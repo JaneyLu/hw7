@@ -4,8 +4,8 @@ var n = [];
 var cursorX = [];
 var cursorY = [];
 var keys = [];
+let showText = 1;
 
-var showText = 0;
 
 //define and load sound file;
 function preload() {
@@ -21,6 +21,8 @@ function preload() {
 function setup() {
   createCanvas(600, 900);
 }
+
+
 
 function draw() {
   background(300, 240, 240);
@@ -191,19 +193,13 @@ function draw() {
           break;
       }
     
-    if (showText == 1 ){
-    stroke(300, 240, 240)
-  }
-    
     fill(180, 60, 80);
     noStroke();
     //notes' positions;
     ellipse(cursorX, cursorY + i, 13, 10);
-    textSize(18);
+    textSize(showText);
     text(keys[k], cursorX - 6, cursorY + 90);
     cursorX += 30;
-    
-
 }
   
 
@@ -221,12 +217,19 @@ function draw() {
 
 }
 
-function mousePressed () {
-  showText = 1;
-}
+
   
 //set up key board;
 function keyPressed() {
+  
+  if (key == "Enter") {
+    showText = 18;
+  }
+  
+  if (key == "Backspace") {
+    showText = 1;
+  }
+  
   //c note;
   if (key == "a") {
     sounds[0].play();
